@@ -6,6 +6,20 @@ function App() {
   const [html, setHtml] = useState('');
   const [css, setCss] = useState('');
   const [js, setJs] = useState('');
+  const [srcdoc, setSrcDoc] = useState('');
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrcDoc(
+        `<html>
+        <body>${html}</body>
+        <style>${css}</style>
+        <script>${js}</script>
+        </html>`
+      )
+    }, 250);
+    return () => clearTimeout(timeout);
+  }, [html, css, js]);
 
   return (
     <>
@@ -20,7 +34,7 @@ function App() {
           onChange={setCss}
           value={css}
           title='CSS'
-          language='Css'
+          language='css'
         />
         <Editor
           onChange={setJs}
@@ -32,6 +46,7 @@ function App() {
       </div>
       <div className="pane">
         <iframe
+          srcDoc={srcdoc}
           title="output"
           sandbox="allow-scripts"//avoid scripting security issue
           width="100%"
