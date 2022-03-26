@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import 'codemirror/lib/codemirror.css'
 import 'codemirror/theme/material.css'
 import 'codemirror/mode/xml/xml'
@@ -6,23 +6,28 @@ import 'codemirror/mode/javascript/javascript'
 import 'codemirror/mode/css/css'
 import { Controlled as Controllededitor } from 'react-codemirror2';
 import './Editor.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function Editor(props) {
+
+    const [open, setOpen] = useState(true);
 
     function handleChange(editor, data, value) {
         props.onChange(value);
     }
 
     const toggleEditor = () => {
-        console.log('btn clicked!!');
+        setOpen(() => !open);
     }
 
     return (
         <>
-            <div className='editor-container'>
+            <div className={`editor-container ${open ? '' : 'collapse'}`}>
                 <div className='editor-title'>
                     {props.title}
-                    <button onClick={toggleEditor}>open/close</button>
+                    <button type='button' className='btn' onClick={toggleEditor}>
+                        <i class={"bi bi-arrows-angle-" + (open ? 'contract' : 'expand')} />
+                    </button>
                 </div>
                 <Controllededitor
                     onBeforeChange={handleChange}
