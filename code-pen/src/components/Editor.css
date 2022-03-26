@@ -1,0 +1,28 @@
+.editor-container{
+display: flex;
+flex-direction: column;
+flex-grow: 1;
+flex-basis: 0;
+padding: .5rem;
+background-color: hsl(225, 6%, 25%);
+}
+
+.editor-title{
+    display: flex;
+    justify-content: space-between;/*move items to end of the div */
+    background-color: rgb(12, 12, 65);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.codeMirror{
+    height: 100% !important;
+}
+.code-mirror-wrapper{
+    flex-grow: 1;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    overflow: hidden;
+    margin-top: .2rem;
+}
